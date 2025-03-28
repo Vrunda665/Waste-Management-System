@@ -23,8 +23,8 @@ img
 </form>
 <?php
 		$cn=mysqli_connect("localhost","root","");
-		$db=mysqli_select_db($cn,"project");
-		$q=mysqli_query($cn,"select * from image_up") or die(mysqli_error());
+		$db=mysqli_select_db($cn,"dwpd");
+		$q=mysqli_query($cn,"select * from image") or die(mysqli_error());
 		while($row=mysqli_fetch_array($q))
 		{
 			echo "<a href='https://www.google.com/' ><img height=250 width=350 src='data:image/jpg;base64,".base64_encode( $row[2] )."' /></a>";
@@ -41,7 +41,7 @@ img
 		$name=addslashes($_FILES["image"]["name"]);
 		//$img=base64_encode($img);
 		$cn=mysqli_connect("localhost","root","");
-		$db=mysqli_select_db($cn,"project");
+		$db=mysqli_select_db($cn,"dwpd");
 		$q=mysqli_query($cn,"insert into image values(5 , '".$name."','".$img."')") or die(mysqli_error());
 			if($q)
 			{   

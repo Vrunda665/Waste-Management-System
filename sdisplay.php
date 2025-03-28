@@ -31,7 +31,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 	  
    </head>
-   <body style="margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;">
+   <body>
       <!-- header section start -->
       <div class="header_section">
          <div class="container-fluid">

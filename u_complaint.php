@@ -1,189 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>KLINZY.com</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/KLINZY.png" type="image/png" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-   </head>
-   <body>
-      <!-- header section start -->
-      <div class="header_section">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <div class="logo"><a href="index.html"><img src="images/KLINZY.png" height="200" width="150"></a></div>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="u_index.php">Home</a>
-                     </li>
-                    
-                     <li class="nav-item">
-                        <a class="nav-link" href="garbagetype.php">Garbage Type</a>
-                     </li>   
-                     
-                     <li class="nav-item">
-                        <a class="nav-link" href="u_feedback.php">Feedback</a>
-                     </li>
-                    
-                     <li class="nav-item">
-                        <a class="nav-link" href="u_contact.php">Contact us</a>
-                     </li>
-                  </ul>
-                  <a href="profile.php"><img src="images/profile.png" width="25px" height="25px" style="margin-right:10px"/></a>
+<html>
+<head>
+    <title>Submit Complaint</title>
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Leaflet Search Plugin -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search/dist/leaflet-search.min.css" />
+    <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.min.js"></script>
+    <style>
+        #map { height: 400px; width: 100%; }
+        .form-container { padding: 20px; }
+        #searchBox {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Submit Your Complaint</h2>
+        <input type="text" id="searchBox" placeholder="Search location...">
+        <div id="map"></div>
+        <br>
+        <form action="index.html" method="post" onsubmit="return validateForm()">
 
-<?php
-session_start();
-echo "WELCOME ".$_SESSION["user"];
-?>
-                  
-                  <div class="search_icon">
-                     <ul>
-                       
-                        <li><a href="new1.php">LOGOUT</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- header section end -->
-      <!-- services section start -->
-      <div class="contact_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <h1 class="contact_text">COMPLAINT</h1>
-                  <h4 class="textt"><font size="4" color="white">Here you can register a complaint</font></h4>
-                  <div class="mail_sectin">
-                  <form id="register" method="POST">
-                     <input type="text" class="email-bt" placeholder="Name" name="name">
-                     <input type="email" class="email-bt" placeholder="Email" name="email">
-                     <input type="textarea" class="massage-bt" placeholder="complaint" rows="5" name="comp">
-                     <div class="send_bt">
-                        <Button value="submit" id="submit" name="submit" id="submit" style="margin-left:5px; "/> SEND </button></div>
+<input type="hidden" id="lat" name="latitude">
+            <input type="hidden" id="lng" name="longitude">
+            <textarea name="complaint" rows="4" cols="50" placeholder="Enter your complaint details"></textarea>
+            <br><br>
+            <input type="submit" value="Submit Complaint">
+        </form>
+    </div>
 
-</form>
-                    </div>
-               </div> 
-               
-            </div>
-         </div>
-      </div>
-      <!-- services se1111111ction end -->
-	  <div class="furnitures_section layout_padding">
-      </div>
-      <!-- footer section start -->
-      <div class="footer_section layout_padding">
-         <div class="container">
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-<h1 class="customer_text">LET US CLEAN ENVIRONMENT</h1>
-                  <p class="footer_lorem_text">Desire to dwell in clean environment.The environment is where we all meet;where we all have a mutual interest;it is the one thing all of us share. 
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">LET US HELP YOU</h1>
-                  <p class="footer_lorem_text">We take the garbage from everyone's house and clean any area of the city according to the location given by the person.
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">INFORMATION</h1>
-                  <p class="footer_lorem_text1">About Us<br>
-                     Press & News<br>
-                     Competitions<br>
-                     Terms & Conditions
-                  </p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h1 class="customer_text">OUR Website</h1>
-                  <p class="footer_lorem_text">KLINZY is privetly created for all people in the city to keep the environment clean.
-                  </p>
-               </div>
-            </div>
-           
-         </div>
-      </div>
-      <!--  footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-      <div class="container">
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="images/fb-icon.png"></a></li>
-               <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-               <li><a href="#"><img src="images/instagram-icon.png"></a></li>
-               <li><a href="#"><img src="images/linkedin-icon.png"></a></li>
-            </ul>
-         </div>
-         <p class="copyright_text">2023 All Rights Reserved. Design by KLINZY</p>
-      </div>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
-   </body>
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([20.5937, 78.9629], 5);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker = L.marker([20.5937, 78.9629], {
+            draggable: true
+        }).addTo(map);
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            if(e.target.value.length > 2) {
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${e.target.value}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.length > 0) {
+                            const lat = parseFloat(data[0].lat);
+                            const lon = parseFloat(data[0].lon);
+                            marker.setLatLng([lat, lon]);
+                            map.setView([lat, lon], 16);
+                            updateCoordinates(lat, lon);
+                        }
+                    });
+            }
+        });
+
+        // Update coordinates when marker is dragged
+        marker.on('dragend', function(e) {
+            updateCoordinates(marker.getLatLng().lat, marker.getLatLng().lng);
+        });
+
+        // Update marker position on map click
+        map.on('click', function(e) {
+            marker.setLatLng(e.latlng);
+            updateCoordinates(e.latlng.lat, e.latlng.lng);
+        });
+
+        function updateCoordinates(lat, lng) {
+            document.getElementById('lat').value = lat;
+            document.getElementById('lng').value = lng;
+        }
+
+        function validateForm() {
+    var lat = document.getElementById('lat').value;
+    var lng = document.getElementById('lng').value;
+    var complaint = document.getElementsByName('complaint')[0].value;
+
+    if(!lat || !lng) {
+        alert('Please select a location on the map');
+        return false;
+    }
+    if(!complaint) {
+        alert('Please enter complaint details');
+        return false;
+    }
+    return true;
+}
+
+    </script>
+</body>
 </html>
 
-<?php
-$cn=mysqli_connect("localhost","root","");
-$db=mysqli_select_db($cn,"project");
-if(isset($_POST["submit"]));
-{
-  $na=$_POST["name"];
-  $em=$_POST["email"];
-  $cm=$_POST["comp"];	
-  if(!empty($na) and !empty($em) or !empty($cm))
-  {
-     $q=mysqli_query($cn,"insert into complaint values('".$na."','".$em."','".$cm."')");
-     if($q)
-     {
-      $message="Your complaint successfully sent";
-      echo "<script type='text/javascript'>alert('$message');</script>";
-        header('Location:u_index.php');
-     }
-     else
-     {
-       $message12="complaint Not send ";
-       echo "<script type='text/javascript'>alert('$message12');</script>";
-     }
-  }
-  
-}
-?>

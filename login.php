@@ -1,45 +1,32 @@
-<html>
-<head>
-<link rel="stylesheet" href="stylelogin.css" type="text/css">
-<title>KLINZY.com</title>
-</head>
-<body>
-<div class="main">
-<div class="register">
-<h2>Login Here</h2>
-<form id="register" method="post">
-<label> Name </label>
-<br>
-<input type="text" name="user_id" id="name" placeholder="Enter User Name">
-<br><br>
-<label>Password </label>
-<br>
-<input type="password" name="password" id="name" placeholder="Enter Password">
-<br>
-<br>
-<br>
-<input type="submit" value="submit" name="submit" id="submit">
-<h5><a href="regist.php">please, click here to registration</a></h5>
-</form>
-</div>
-</div>
-</body>
-</html>
+
+
 <?php
 session_start();
 $cn=mysqli_connect("localhost","root","");
 $db=mysqli_select_db($cn,"project");
 if(isset($_POST["submit"]))
 {
-   $n=$_POST["user_id"];
+   $n=$_POST["email"];
    $p=$_POST["password"];
-   $q=mysqli_query($cn,"select*from where user_id='".$n."' and password='".$p."'");
-   $no=mysqli_num_rows($q);
+//    $q=mysqli_query($cn,"SELECT * FROM `user_data` WHERE email='".$n."' and password='".$p."'");
+    $sql = "SELECT * FROM user_data WHERE email = '$n'";
+    $q =  mysqli_query($cn , $sql);
+    $no=mysqli_num_rows($q);
    if($no==1)
-   {    
-        $_SESSION["user"]=$n;
+   {   
+    $user = $q->fetch_assoc();
+
+    // Verify password
+    if ($p == $user['password']) {
+        // Store user data in session
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['username'] = $user['username'];
+        header("Location: index.html");
+        exit;
+    } 
+        // $_SESSION["email"]=$n;
         
-        header('Location:u_index.php');
+        // header('Location:index.html');
     }
    else
    {
@@ -48,4 +35,3 @@ if(isset($_POST["submit"]))
     }
  }
 ?>
-  
